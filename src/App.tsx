@@ -98,83 +98,118 @@ function WonderAppContent() {
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="relative overflow-hidden pt-8 pb-12 border-b border-slate-800">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="relative rounded-3xl overflow-hidden border border-slate-800 shadow-2xl mb-8 group aspect-[16/9] max-h-[440px]">
+      {/* Mobile Sub-Navigation Bar for quick thumb navigation */}
+      <div className="lg:hidden bg-slate-900/95 border-b border-slate-800 px-3 py-2 overflow-x-auto scrollbar-none flex items-center gap-2 z-40 sticky top-16 backdrop-blur-md">
+        <a
+          href="#playable-game"
+          className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-purple-600 text-slate-200 text-xs font-semibold whitespace-nowrap transition-colors"
+        >
+          {isAr ? '🎮 اللعب' : '🎮 Play Game'}
+        </a>
+        <a
+          href="#stages-map"
+          className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-purple-600 text-slate-200 text-xs font-semibold whitespace-nowrap transition-colors"
+        >
+          {isAr ? '🗺️ الـ 67 مرحلة' : '🗺️ 67 Stages'}
+        </a>
+        <a
+          href="#characters"
+          className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-purple-600 text-slate-200 text-xs font-semibold whitespace-nowrap transition-colors"
+        >
+          {isAr ? '🍄 الشخصيات' : '🍄 Heroes'}
+        </a>
+        <a
+          href="#powerups"
+          className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-purple-600 text-slate-200 text-xs font-semibold whitespace-nowrap transition-colors"
+        >
+          {isAr ? '🐘 التحولات' : '🐘 Powers'}
+        </a>
+        <a
+          href="#comparison"
+          className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-purple-600 text-slate-200 text-xs font-semibold whitespace-nowrap transition-colors"
+        >
+          {isAr ? '⚔️ وندر أم RPG' : '⚔️ Wonder vs RPG'}
+        </a>
+      </div>
+
+      {/* Hero Section - Optimized for all mobile viewports */}
+      <section className="relative overflow-hidden pt-4 sm:pt-8 pb-8 sm:pb-12 border-b border-slate-800">
+        <div className="max-w-6xl mx-auto px-3 sm:px-4">
+          <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-800 shadow-2xl mb-6 sm:mb-8 group min-h-[460px] sm:min-h-[420px] md:min-h-0 md:aspect-[16/9] md:max-h-[460px] flex flex-col justify-end">
             <img
               src="/assets/images/wonder_hero_banner_1794394997921.jpg"
               alt="Flower Kingdom Wonder World"
               referrerPolicy="no-referrer"
-              className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700"
+              className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-[1.02] transition-transform duration-700"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent flex flex-col justify-end p-6 md:p-10">
-              <div className="flex items-center gap-2 text-xs text-purple-300 font-semibold mb-2">
+            {/* Measured scrim for text overlay */}
+            <div className="relative z-10 bg-gradient-to-t from-slate-950 via-slate-950/85 sm:via-slate-950/50 to-slate-950/20 sm:to-transparent flex flex-col justify-end p-4 sm:p-6 md:p-10 w-full">
+              <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] sm:text-xs text-purple-300 font-semibold mb-2">
                 <span>Nintendo Switch 2023</span>
                 <span aria-hidden="true">·</span>
-                <span>{isAr ? '67 مرحلة كاملة عبر 8 عوالم' : '67 Stages Across 8 Worlds'}</span>
+                <span>{isAr ? '67 مرحلة عبر 8 عوالم' : '67 Stages Across 8 Worlds'}</span>
                 <span aria-hidden="true">·</span>
                 <span>{isAr ? '1–4 لاعبين' : '1–4 Players'}</span>
                 <span aria-hidden="true">·</span>
-                <span>{isAr ? 'تحول الفيل وزهور العجائب' : 'Elephant & Wonder Effects'}</span>
+                <span>{isAr ? 'تحول الفيل وزهور العجائب' : 'Elephant & Wonder'}</span>
               </div>
 
-              <h1 className="text-2xl md:text-5xl font-black text-white font-display max-w-2xl text-balance drop-shadow-md">
+              <h1 className="text-xl sm:text-3xl md:text-5xl font-black text-white font-display max-w-2xl text-balance drop-shadow-md leading-tight">
                 {isAr
                   ? 'سوبر ماريو برذرز وندر: 67 مرحلة في مملكة الزهور'
                   : 'Super Mario Bros. Wonder: 67 Stages in Flower Kingdom'}
               </h1>
 
-              <p className="text-xs sm:text-base text-slate-200 mt-2 max-w-2xl drop-shadow">
+              <p className="text-xs sm:text-sm md:text-base text-slate-200 mt-2 max-w-2xl drop-shadow leading-relaxed">
                 {isAr
                   ? 'خض مغامرة المنصات الكاملة في كافة عوالم مملكة الزهور الـ 8! اختر من بين 67 مرحلة حافلة بالأنابيب الزاحفة، والأمطار النقدية، وتحول الفيل، والمفاجآت الموسيقية.'
                   : 'Experience all 67 authentic stages across 8 Flower Kingdom worlds! Jump into inchworm pipes, coin showers, Elephant forms, and musical wonder events.'}
               </p>
 
-              <div className="flex flex-wrap items-center gap-3 mt-6">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 mt-4 sm:mt-6 w-full sm:w-auto">
                 <a
                   href="#playable-game"
-                  className="px-6 py-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-sm shadow-lg shadow-purple-600/40 flex items-center gap-2 transition-transform hover:scale-105"
+                  className="w-full sm:w-auto justify-center px-5 sm:px-6 py-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs sm:text-sm shadow-lg shadow-purple-600/40 flex items-center gap-2 transition-transform active:scale-95"
                 >
-                  <Play className="w-4 h-4 fill-white" />
+                  <Play className="w-4 h-4 fill-white shrink-0" />
                   <span>{isAr ? `العب المرحلة ${activeStage.stageCode} الآن` : `Play Course ${activeStage.stageCode}`}</span>
                 </a>
 
                 <a
                   href="#stages-map"
-                  className="px-5 py-3 rounded-xl bg-slate-900/80 hover:bg-slate-800 text-slate-200 text-sm font-semibold border border-slate-700 flex items-center gap-2 transition-colors"
+                  className="w-full sm:w-auto justify-center px-4 sm:px-5 py-3 rounded-xl bg-slate-900/90 hover:bg-slate-800 text-slate-200 text-xs sm:text-sm font-semibold border border-slate-700 flex items-center gap-2 transition-colors"
                 >
-                  <Layers className="w-4 h-4 text-purple-400" />
+                  <Layers className="w-4 h-4 text-purple-400 shrink-0" />
                   <span>{isAr ? 'تصفح خريطة الـ 67 مرحلة' : 'Explore All 67 Stages'}</span>
                 </a>
               </div>
             </div>
           </div>
 
-          {/* Quick Metrics Strip */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 py-4 border-y border-slate-800/80 text-center md:text-start">
-            <div className="p-3">
-              <div className="text-xs text-slate-400">{isAr ? 'إجمالي المراحل' : 'Total Stages'}</div>
-              <div className="text-xl font-extrabold text-white font-display mt-0.5 font-mono">67 {isAr ? 'مرحلة' : 'Courses'}</div>
-              <div className="text-[11px] text-purple-400">{isAr ? 'موزعة على 8 عوالم كاملة' : 'Across 8 Wonder Worlds'}</div>
+          {/* Quick Metrics Strip - Mobile Responsive Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-4 py-3 sm:py-4 border-y border-slate-800/80 text-start">
+            <div className="p-2.5 sm:p-3 bg-slate-900/50 md:bg-transparent rounded-xl md:rounded-none border border-slate-800/60 md:border-0">
+              <div className="text-[11px] sm:text-xs text-slate-400">{isAr ? 'إجمالي المراحل' : 'Total Stages'}</div>
+              <div className="text-lg sm:text-xl font-extrabold text-white font-display mt-0.5 font-mono">67 {isAr ? 'مرحلة' : 'Courses'}</div>
+              <div className="text-[10px] sm:text-[11px] text-purple-400 truncate">{isAr ? 'موزعة على 8 عوالم' : 'Across 8 Worlds'}</div>
             </div>
 
-            <div className="p-3">
-              <div className="text-xs text-slate-400">{isAr ? 'الشخصيات المتاحة' : 'Playable Heroes'}</div>
-              <div className="text-xl font-extrabold text-white font-display mt-0.5">12 {isAr ? 'بطلاً' : 'Characters'}</div>
-              <div className="text-[11px] text-purple-400">{isAr ? 'يوشي ونابيت للمبتدئين' : 'Includes Yoshi & Nabbit'}</div>
+            <div className="p-2.5 sm:p-3 bg-slate-900/50 md:bg-transparent rounded-xl md:rounded-none border border-slate-800/60 md:border-0">
+              <div className="text-[11px] sm:text-xs text-slate-400">{isAr ? 'الشخصيات' : 'Playable Heroes'}</div>
+              <div className="text-lg sm:text-xl font-extrabold text-white font-display mt-0.5">12 {isAr ? 'بطلاً' : 'Heroes'}</div>
+              <div className="text-[10px] sm:text-[11px] text-purple-400 truncate">{isAr ? 'يوشي ونابيت منيعان' : 'Yoshi & Nabbit safe'}</div>
             </div>
 
-            <div className="p-3">
-              <div className="text-xs text-slate-400">{isAr ? 'التحولات الثورية' : 'Transformations'}</div>
-              <div className="text-xl font-extrabold text-white font-display mt-0.5">3 + 1 Wonder</div>
-              <div className="text-[11px] text-purple-400">{isAr ? 'الفيل والفقاعات والمثقاب' : 'Elephant, Bubble, Drill'}</div>
+            <div className="p-2.5 sm:p-3 bg-slate-900/50 md:bg-transparent rounded-xl md:rounded-none border border-slate-800/60 md:border-0">
+              <div className="text-[11px] sm:text-xs text-slate-400">{isAr ? 'التحولات' : 'Transformations'}</div>
+              <div className="text-lg sm:text-xl font-extrabold text-white font-display mt-0.5">3 + 1 Wonder</div>
+              <div className="text-[10px] sm:text-[11px] text-purple-400 truncate">{isAr ? 'فيل، فقاعات، مثقاب' : 'Elephant, Bubble, Drill'}</div>
             </div>
 
-            <div className="p-3">
-              <div className="text-xs text-slate-400">{isAr ? 'تأثيرات العجائب' : 'Wonder Effects'}</div>
-              <div className="text-xl font-extrabold text-white font-display mt-0.5">8 {isAr ? 'أنماط فريدة' : 'Unique Styles'}</div>
-              <div className="text-[11px] text-purple-400">{isAr ? 'أنابيب زاحفة، انعدام جاذبية، إيقاع' : 'Living Pipes, Zero-G, Beats'}</div>
+            <div className="p-2.5 sm:p-3 bg-slate-900/50 md:bg-transparent rounded-xl md:rounded-none border border-slate-800/60 md:border-0">
+              <div className="text-[11px] sm:text-xs text-slate-400">{isAr ? 'تأثيرات العجائب' : 'Wonder Effects'}</div>
+              <div className="text-lg sm:text-xl font-extrabold text-white font-display mt-0.5">8 {isAr ? 'أنماط' : 'Styles'}</div>
+              <div className="text-[10px] sm:text-[11px] text-purple-400 truncate">{isAr ? 'أنابيب زاحفة، انعدام جاذبية' : 'Living Pipes, Zero-G'}</div>
             </div>
           </div>
         </div>

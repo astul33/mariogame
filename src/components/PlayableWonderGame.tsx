@@ -958,27 +958,28 @@ export const PlayableWonderGame: React.FC<PlayableWonderGameProps> = ({
           {onOpenStageDrawer && (
             <button
               onClick={onOpenStageDrawer}
-              className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-purple-900/60 text-slate-200 text-xs font-semibold flex items-center gap-1.5 border border-slate-700 transition-colors"
+              className="px-2.5 sm:px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-purple-900/60 text-slate-200 text-xs font-semibold flex items-center gap-1.5 border border-slate-700 transition-colors whitespace-nowrap"
             >
               <Layers className="w-3.5 h-3.5 text-purple-400" />
-              <span>{isAr ? 'خريطة الـ 67 مرحلة' : '67 Stages Map'}</span>
+              <span className="hidden sm:inline">{isAr ? 'خريطة الـ 67 مرحلة' : '67 Stages Map'}</span>
+              <span className="sm:hidden">{isAr ? 'الخريطة' : 'Map'}</span>
             </button>
           )}
         </div>
 
         {/* Center: Collectibles */}
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-800 text-xs font-mono">
+        <div className="flex items-center gap-2 sm:gap-3">
+          <div className="flex items-center gap-1.5 px-2 py-1 rounded-lg bg-slate-800 text-xs font-mono">
             <span className="text-amber-400 font-bold">🪙</span>
             <span className="tabular-nums font-semibold">{coins}</span>
           </div>
 
-          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-purple-900/40 border border-purple-600/30 text-xs font-mono">
+          <div className="flex items-center gap-1.5 px-2 py-1 rounded-lg bg-purple-900/40 border border-purple-600/30 text-xs font-mono">
             <span className="text-purple-300 font-bold">🌸</span>
             <span className="tabular-nums font-semibold text-purple-200">{flowerCoins}</span>
           </div>
 
-          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-yellow-950/50 border border-yellow-500/40 text-xs font-mono">
+          <div className="flex items-center gap-1.5 px-2 py-1 rounded-lg bg-yellow-950/50 border border-yellow-500/40 text-xs font-mono">
             <span className="text-yellow-400 font-bold">⭐</span>
             <span className="tabular-nums font-semibold text-yellow-300">{wonderSeeds}</span>
           </div>
@@ -1004,18 +1005,18 @@ export const PlayableWonderGame: React.FC<PlayableWonderGameProps> = ({
             className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium transition-colors"
           >
             <RotateCcw className="w-3.5 h-3.5" />
-            <span>{isAr ? 'إعادة' : 'Reset'}</span>
+            <span className="hidden sm:inline">{isAr ? 'إعادة' : 'Reset'}</span>
           </button>
         </div>
       </div>
 
-      {/* Main Game Canvas */}
-      <div className="relative w-full aspect-[16/9] max-h-[520px] bg-slate-950 overflow-hidden flex items-center justify-center">
+      {/* Main Game Canvas - Mobile Touch Gesture Isolation */}
+      <div className="relative w-full aspect-[16/9] max-h-[520px] bg-slate-950 overflow-hidden flex items-center justify-center touch-none select-none">
         <canvas
           ref={canvasRef}
           width={960}
           height={540}
-          className="w-full h-full object-contain block focus:outline-none"
+          className="w-full h-full object-contain block focus:outline-none touch-none select-none"
           tabIndex={0}
         />
 
@@ -1139,41 +1140,60 @@ export const PlayableWonderGame: React.FC<PlayableWonderGameProps> = ({
         </div>
       </div>
 
-      {/* Touch Screen Controls */}
-      <div className="md:hidden p-4 bg-slate-900 border-t border-slate-800 flex items-center justify-between">
+      {/* Touch Screen Controls - Mobile Joy-Con Pad */}
+      <div className="md:hidden p-3.5 bg-slate-900 border-t border-slate-800 flex items-center justify-between touch-none select-none">
+        {/* Directional Pad */}
         <div className="flex items-center gap-2">
           <button
-            onTouchStart={() => (keysRef.current['ArrowLeft'] = true)}
-            onTouchEnd={() => (keysRef.current['ArrowLeft'] = false)}
+            onTouchStart={(e) => {
+              e.preventDefault();
+              keysRef.current['ArrowLeft'] = true;
+            }}
+            onTouchEnd={(e) => {
+              e.preventDefault();
+              keysRef.current['ArrowLeft'] = false;
+            }}
             onMouseDown={() => (keysRef.current['ArrowLeft'] = true)}
             onMouseUp={() => (keysRef.current['ArrowLeft'] = false)}
             aria-label="Move Left"
-            className="w-12 h-12 rounded-xl bg-slate-800 active:bg-slate-700 text-white flex items-center justify-center border border-slate-700"
+            className="w-14 h-14 rounded-2xl bg-slate-800 active:bg-purple-600 text-white flex items-center justify-center border-2 border-slate-700 active:border-purple-400 active:scale-95 transition-transform touch-none shadow-md"
           >
-            <ArrowLeft className="w-6 h-6" />
+            <ArrowLeft className="w-7 h-7" />
           </button>
           <button
-            onTouchStart={() => (keysRef.current['ArrowRight'] = true)}
-            onTouchEnd={() => (keysRef.current['ArrowRight'] = false)}
+            onTouchStart={(e) => {
+              e.preventDefault();
+              keysRef.current['ArrowRight'] = true;
+            }}
+            onTouchEnd={(e) => {
+              e.preventDefault();
+              keysRef.current['ArrowRight'] = false;
+            }}
             onMouseDown={() => (keysRef.current['ArrowRight'] = true)}
             onMouseUp={() => (keysRef.current['ArrowRight'] = false)}
             aria-label="Move Right"
-            className="w-12 h-12 rounded-xl bg-slate-800 active:bg-slate-700 text-white flex items-center justify-center border border-slate-700"
+            className="w-14 h-14 rounded-2xl bg-slate-800 active:bg-purple-600 text-white flex items-center justify-center border-2 border-slate-700 active:border-purple-400 active:scale-95 transition-transform touch-none shadow-md"
           >
-            <ArrowRight className="w-6 h-6" />
+            <ArrowRight className="w-7 h-7" />
           </button>
         </div>
 
+        {/* Action Buttons: Y/B Attack & B/A Jump */}
         <div className="flex items-center gap-3">
           <button
+            onTouchStart={(e) => {
+              e.preventDefault();
+              performAction();
+            }}
             onClick={performAction}
-            className="w-12 h-12 rounded-xl bg-blue-600 active:bg-blue-500 text-white font-bold text-xs flex flex-col items-center justify-center border border-blue-400 shadow-md"
+            className="w-13 h-13 rounded-2xl bg-blue-600 active:bg-blue-500 text-white font-bold text-xs flex flex-col items-center justify-center border-2 border-blue-400 shadow-lg active:scale-90 transition-transform touch-none"
           >
-            <span>B</span>
-            <span className="text-[9px]">{isAr ? 'حركة' : 'Action'}</span>
+            <span className="font-display text-sm">B</span>
+            <span className="text-[9px] font-semibold">{isAr ? 'حركة' : 'Action'}</span>
           </button>
           <button
-            onTouchStart={() => {
+            onTouchStart={(e) => {
+              e.preventDefault();
               keysRef.current['Space'] = true;
               if (pRef.current.isGrounded) {
                 pRef.current.vy = -12;
@@ -1181,7 +1201,10 @@ export const PlayableWonderGame: React.FC<PlayableWonderGameProps> = ({
                 sound.playJump();
               }
             }}
-            onTouchEnd={() => (keysRef.current['Space'] = false)}
+            onTouchEnd={(e) => {
+              e.preventDefault();
+              keysRef.current['Space'] = false;
+            }}
             onMouseDown={() => {
               if (pRef.current.isGrounded) {
                 pRef.current.vy = -12;
@@ -1189,10 +1212,10 @@ export const PlayableWonderGame: React.FC<PlayableWonderGameProps> = ({
                 sound.playJump();
               }
             }}
-            className="w-14 h-14 rounded-2xl bg-emerald-600 active:bg-emerald-500 text-white font-bold text-sm flex flex-col items-center justify-center border border-emerald-400 shadow-lg"
+            className="w-15 h-15 rounded-2xl bg-emerald-600 active:bg-emerald-500 text-white font-bold text-sm flex flex-col items-center justify-center border-2 border-emerald-400 shadow-xl active:scale-90 transition-transform touch-none"
           >
-            <ChevronUp className="w-5 h-5" />
-            <span className="text-[10px]">{isAr ? 'قفز' : 'Jump'}</span>
+            <ChevronUp className="w-6 h-6" />
+            <span className="text-[10px] font-semibold">{isAr ? 'قفز' : 'Jump'}</span>
           </button>
         </div>
       </div>

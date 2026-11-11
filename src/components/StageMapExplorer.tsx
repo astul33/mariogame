@@ -88,7 +88,7 @@ export const StageMapExplorer: React.FC<StageMapExplorerProps> = ({
         </div>
 
         {/* Global Progress Strip */}
-        <div className="flex items-center gap-4 p-3 bg-slate-900 border border-slate-800 rounded-2xl shrink-0">
+        <div className="flex items-center justify-between sm:justify-start gap-4 p-3 bg-slate-900 border border-slate-800 rounded-2xl w-full sm:w-auto shrink-0">
           <div>
             <div className="text-[11px] text-slate-400">
               {isAr ? 'المراحل المنجزة' : 'Cleared Courses'}
@@ -97,7 +97,7 @@ export const StageMapExplorer: React.FC<StageMapExplorerProps> = ({
               {totalCleared} <span className="text-xs text-slate-500 font-normal">/ 67</span>
             </div>
           </div>
-          <div className="w-24 h-2.5 bg-slate-800 rounded-full overflow-hidden border border-slate-700">
+          <div className="w-24 sm:w-28 h-2.5 bg-slate-800 rounded-full overflow-hidden border border-slate-700">
             <div
               className="h-full bg-gradient-to-r from-purple-500 to-cyan-400 transition-all duration-500"
               style={{ width: `${Math.max(5, progressPercent)}%` }}
