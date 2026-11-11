@@ -1,0 +1,6 @@
+{
+  "name": "Super Mario Bros. Wonder - Flower Kingdom Explorer & Playable Adventure",
+  "description": "Interactive Super Mario Bros. Wonder companion, playable Flower Kingdom platformer game with Elephant power & Wonder Flower effect, characters guide, badges simulator, and Wonder vs Mario RPG comparison.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

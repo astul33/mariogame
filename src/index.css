@@ -1,0 +1,40 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  body {
+    font-family: 'Cairo', 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+}
+
+.font-display {
+  font-family: 'Fredoka', 'Cairo', 'Plus Jakarta Sans', sans-serif;
+}
+
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes wonder-pulse {
+  0%, 100% { filter: hue-rotate(0deg) drop-shadow(0 0 15px rgba(168, 85, 247, 0.6)); }
+  50% { filter: hue-rotate(90deg) drop-shadow(0 0 25px rgba(6, 182, 212, 0.8)); }
+}
+
+@keyframes bend-pipe {
+  0%, 100% { transform: scaleY(1) rotate(0deg); }
+  25% { transform: scaleY(1.15) rotate(4deg); }
+  75% { transform: scaleY(0.88) rotate(-4deg); }
+}
+
+.animate-float-gentle {
+  animation: float-gentle 3.5s ease-in-out infinite;
+}
+
+.animate-wonder-pulse {
+  animation: wonder-pulse 4s ease-in-out infinite;
+}
+
+.animate-bend-pipe {
+  animation: bend-pipe 1.8s ease-in-out infinite;
+}
